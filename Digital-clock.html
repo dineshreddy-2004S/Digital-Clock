@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #13085b;
+        }
+        .time-container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .time-display{
+            width: 90%;
+            max-width: 550px;
+            height: 200px;
+            box-shadow: 0px 0px 5px rgb(3, 3, 3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.2);
+        }
+        .time-display::before{
+            content: '';
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to right top, rgb(206, 18, 219), rgb(81, 10, 235));
+            border-radius: 50%;
+            position: absolute;
+            top: -80px;
+            left: -100px;
+            z-index: -2;
+        }
+        .time-display::after{
+            content: '';
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to right top, blue,rgb(43, 249, 39), rgb(223, 230, 37));
+            border-radius: 50%;
+            position: absolute;
+            top: 80px;
+            right: -90px;
+            z-index: -2;
+        }
+        .time-display span{
+            color: #fff;
+            font-size: 50px;
+            width: 80px;
+            position: relative;
+        }
+        .time-display #hours::before{
+            content: 'HRS';
+            position: absolute;
+            bottom: -25px;
+            left: 10px;
+            font-size: 15px;
+            color: #ff00ff;
+            font-weight: 700;
+        }
+        .time-display #minutes::before{
+            content: 'MINS';
+            position: absolute;
+            bottom: -25px;
+            left: 5px;
+            font-size: 15px;
+            color: red;
+            font-weight: 700;
+        }
+        .time-display #seconds::before{
+            content: 'SEC';
+            position: absolute;
+            bottom: -25px;
+            left: 10px;
+            font-size: 15px;
+            color: black;
+            font-weight: 800;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="time-container">
+        <div class="time-display">
+            <span id="hours">00</span>
+            <span>:</span>
+            <span id="minutes">00</span>
+            <span>:</span>
+            <span id="seconds">00</span>
+        </div>
+    </div>
+
+
+    <script>
+        var hours = document.getElementById("hours");
+        var minutes = document.getElementById("minutes");
+        var seconds = document.getElementById("seconds");
+
+        setInterval(() => {
+            var currentTime = new Date();
+            hours.innerHTML = (currentTime.getHours() < 10) ? "0" + currentTime.getHours(): currentTime.getHours();
+            minutes.innerHTML = (currentTime.getMinutes() < 10) ? "0" + currentTime.getMinutes() : currentTime.getMinutes();
+            seconds.innerHTML = (currentTime.getSeconds() < 10) ? "0" + currentTime.getSeconds() : currentTime.getSeconds();;
+            
+        }, 1000);
+    </script>
+</body>
+</html>
